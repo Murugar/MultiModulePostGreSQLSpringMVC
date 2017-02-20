@@ -1,0 +1,92 @@
+package com.iqmsoft.mm.dto.student;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+public class StudentCreateDTO {
+
+	private Long id;
+
+	@NotEmpty(message="Please enter first name")
+	@Size(min = 2, max = 50, message="First Name must be between {min} and {max}")
+	private String firstName;
+
+	@NotEmpty(message="Please enter surname")
+	@Size(min = 2, max = 50, message="Surname must be between {min} and {max}")
+	private String surname;
+
+	@NotEmpty(message="Please enter birth number")
+	private String birthNumber;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getBirthNumber() {
+		return birthNumber;
+	}
+
+	public void setBirthNumber(String birthNumber) {
+		this.birthNumber = birthNumber;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((birthNumber == null) ? 0 : birthNumber.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof StudentCreateDTO))
+			return false;
+		StudentCreateDTO other = (StudentCreateDTO) obj;
+		if (birthNumber == null) {
+			if (other.birthNumber != null)
+				return false;
+		} else if (!birthNumber.equals(other.getBirthNumber()))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.getFirstName()))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.getSurname()))
+			return false;
+		return true;
+	}
+
+}
